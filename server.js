@@ -4,6 +4,8 @@ const app = express();
 
 const jwt = require("jsonwebtoken");
 
+// console.log(process.env);
+
 //body parser for json
 app.use(express.json());
 
