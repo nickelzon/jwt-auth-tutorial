@@ -10,6 +10,9 @@ const posts = [
   {
     name: "Albert",
   },
+  {
+    name: "Einstein",
+  },
 ];
 
 //body parser for json
@@ -18,7 +21,9 @@ app.use(express.json());
 //auth middleware
 const authenticateToken = (request, response, next) => {
   const authHeader = request.headers["authorization"];
-  const token = authHeader && authHeader.split(" ")[1];
+  const token = authHeader && authHeader.split("  ")[1]; //splitting of Bearer TOKEN
+
+  console.log(token);
 
   if (!token) return response.status(401).send();
 
