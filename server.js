@@ -39,13 +39,4 @@ app.get("/posts", authenticateToken, (request, response) => {
   response.json(posts.filter((p) => p.name === request.user.name));
 });
 
-app.post("/login", (request, response) => {
-  const username = request.body.username;
-  const user = {
-    name: username,
-  };
-  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-  response.json({ accessToken: accessToken });
-});
-
-app.listen(4000, () => console.log("server up running on PORT 4000..."));
+app.listen(5000, () => console.log("server up running on PORT 5000..."));
