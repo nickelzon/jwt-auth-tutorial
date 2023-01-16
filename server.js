@@ -10,9 +10,6 @@ const posts = [
   {
     name: "Albert",
   },
-  {
-    name: "Einstein",
-  },
 ];
 
 //body parser for json
@@ -21,9 +18,7 @@ app.use(express.json());
 //auth middleware
 const authenticateToken = (request, response, next) => {
   const authHeader = request.headers["authorization"];
-  const token = authHeader && authHeader.split("  ")[1]; //splitting of Bearer TOKEN
-
-  console.log(token);
+  const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) return response.status(401).send();
 
@@ -39,4 +34,13 @@ app.get("/posts", authenticateToken, (request, response) => {
   response.json(posts.filter((p) => p.name === request.user.name));
 });
 
-app.listen(5000, () => console.log("server up running on PORT 5000..."));
+app.post("/login", (request, response) => {
+  const username = request.body.username;
+  const user = {
+    name: username,
+  };
+  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+  response.json({ accessToken: accessToken });
+});
+
+app.listen(4000, () => console.log("server up running on PORT 4000..."));
