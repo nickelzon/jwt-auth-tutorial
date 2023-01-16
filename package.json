@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "authDev": "nodemon authServer.js",
-    "dev": "nodemon server.js"
+    "authDev2": "nodemon authServer2.js"
   },
   "author": "",
   "license": "ISC",
